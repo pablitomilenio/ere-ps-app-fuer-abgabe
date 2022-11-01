@@ -8,17 +8,19 @@ import org.junit.jupiter.api.Test;
 
 import health.ere.ps.exception.idp.IdpException;
 
+import health.ere.ps.service.idp.client.authentication.UriUtils;
+
 public class UriUtilsTest {
   @Test
-  public void ParseDifferentURIParameters() throws IdpException  {
+  public void testExtractParameterMap() throws IdpException  {
 
       final String testUriString = "https://www.google.com?hello=Pablo&bye=2";
 
-      final Map<String, String> testExtractParameterMap = UriUtils.extractParameterMap(testUriString);
+      final Map<String, String> getValues = UriUtils.extractParameterMap(testUriString) ;
 
-      assertEquals(2, testExtractParameterMap.size(), "The URL should parse 2 parameters");
+      assertEquals(2, getValues.size(), "The URL should parse 2 parameters");
       
-      assertEquals("Pablo", testExtractParameterMap.get("hello"), 
+      assertEquals("Pablo", getValues.get("hello"), 
         "System should correctly parse the first parameter");
 
   }
